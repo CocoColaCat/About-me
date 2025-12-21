@@ -1,47 +1,28 @@
-
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CocoCola的個人網站</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CocoCola的個人網站</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&amp;display=swap" rel="stylesheet">
+  <style>
         body {
+            box-sizing: border-box;
             font-family: 'Nunito', sans-serif;
-            background-color: #0f172a;
-            background-image: 
-                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
-                radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
-            background-size: 550px 550px, 350px 350px, 250px 250px;
-            background-position: 0 0, 40px 60px, 130px 270px;
+            background: linear-gradient(135deg, #1a472a 0%, #2d5a3f 30%, #0f2417 70%, #1a472a 100%);
             min-height: 100vh;
             color: white;
+            overflow-x: hidden;
         }
         
-        .space-card {
+        .christmas-card {
             backdrop-filter: blur(8px) saturate(180%);
             -webkit-backdrop-filter: blur(8px) saturate(180%);
-            background-color: rgba(17, 25, 40, 0.75);
+            background-color: rgba(139, 0, 0, 0.3);
             border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.125);
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
-        }
-        
-        .planet {
-            position: absolute;
-            border-radius: 50%;
-            box-shadow: inset 0 0 50px #fff, 
-                        inset 20px 0 80px #f0f, 
-                        inset -20px 0 80px #0ff, 
-                        inset 20px 0 300px #f0f, 
-                        inset -20px 0 300px #0ff, 
-                        0 0 50px #fff, 
-                        -10px 0 80px #f0f, 
-                        10px 0 80px #0ff;
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.3), 0 0 60px rgba(0, 128, 0, 0.2);
         }
         
         .social-icon {
@@ -65,146 +46,477 @@
         
         .profile-img {
             border-radius: 50%;
-            border: 4px solid rgba(139, 92, 246, 0.5);
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+            border: 4px solid rgba(255, 215, 0, 0.7);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5), 0 0 40px rgba(0, 128, 0, 0.3);
+        }
+        
+        .snowflake {
+            position: fixed;
+            color: white;
+            font-size: 1rem;
+            top: -20px;
+            animation: fall linear infinite;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(-10px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0.3;
+            }
+        }
+        
+        .christmas-lights {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            display: flex;
+            justify-content: space-around;
+            z-index: 100;
+        }
+        
+        .light-bulb {
+            width: 12px;
+            height: 18px;
+            border-radius: 50%;
+            animation: glow 1s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            0% { opacity: 0.4; filter: brightness(0.8); }
+            100% { opacity: 1; filter: brightness(1.5); }
+        }
+        
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.9), rgba(0, 100, 0, 0.9));
+            border: 2px solid gold;
+            border-radius: 16px;
+            padding: 16px;
+            z-index: 1001;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3), 0 10px 40px rgba(0, 0, 0, 0.4);
+            min-width: 280px;
+        }
+        
+        .player-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .album-art {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #c41e3a, #228b22);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .album-art.playing {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .track-info {
+            flex: 1;
+            overflow: hidden;
+        }
+        
+        .track-title {
+            color: #ffd700;
+            font-weight: 700;
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .track-artist {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 12px;
+        }
+        
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .play-btn {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #ffd700, #ffaa00);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+        
+        .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+        }
+        
+        .play-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: #1a472a;
+        }
+        
+        .progress-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ffd700, #ff6b6b);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+        
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .volume-icon {
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .volume-slider {
+            flex: 1;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            appearance: none;
+            cursor: pointer;
+        }
+        
+        .volume-slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            background: #ffd700;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .now-playing-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 215, 0, 0.2);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 10px;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+        
+        .now-playing-dot {
+            width: 6px;
+            height: 6px;
+            background: #ff4444;
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+        
+        .now-playing-dot.active {
+            background: #00ff00;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
         }
     </style>
-</head>
-<body>
-    <div class="container mx-auto px-4 py-8 relative">
-        <!-- Background Elements -->
-        <div class="planet w-32 h-32 top-20 right-20 opacity-50 hidden md:block"></div>
-        <div class="planet w-16 h-16 bottom-40 left-20 opacity-30 hidden md:block"></div>
-        
-        <!-- Main Content -->
-        <div class="flex flex-col items-center justify-center min-h-screen">
-            <div class="space-card p-8 w-full max-w-md mb-8 floating">
-                <div class="flex justify-center mb-6">
-                    <img src="https://avatars.githubusercontent.com/u/216639816?v=4" alt="CocoCola" class="w-32 h-32 profile-img">
-                </div>
-                
-                <h1 class="text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400 mb-2">CocoCola</h1>
-                <p class="text-center text-indigo-200 mb-6">一個愛玩程式碼還有Roblox的國中生</p>
-                
-                <div class="flex justify-center space-x-4">
-                    <a href="https://www.youtube.com/@cococola-cool" target="_blank" class="social-icon bg-red-600 text-white p-3 rounded-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
-                        </svg>
-                    </a>
-                    <a href="https://github.com/CocoColaCat" target="_blank" class="social-icon bg-gray-800 text-white p-3 rounded-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
-                    </a>
-                    <a href="https://www.instagram.com/coco_ak47/" target="_blank" class="social-icon bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white p-3 rounded-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="space-card p-6 w-full max-w-md">
-                <h2 class="text-2xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400 mb-4">我的連結</h2>
-                
-                <div class="space-y-4">
-                    <a href="https://www.youtube.com/@cococola-cool" target="_blank" class="flex items-center p-3 rounded-lg bg-indigo-900 bg-opacity-50 hover:bg-opacity-70 transition-all">
-                        <div class="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-white mr-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <span class="text-indigo-200">YouTube</span>
-                            <p class="text-xs text-indigo-300">@cococola-cool</p>
-                        </div>
-                    </a>
-                    
-                    <a href="https://github.com/CocoColaCat" target="_blank" class="flex items-center p-3 rounded-lg bg-indigo-900 bg-opacity-50 hover:bg-opacity-70 transition-all">
-                        <div class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white mr-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <span class="text-indigo-200">GitHub</span>
-                            <p class="text-xs text-indigo-300">CocoColaCat</p>
-                        </div>
-                    </a>
-                    
-                    <a href="https://www.roblox.com/users/5422834736/profile" target="_blank" class="flex items-center p-3 rounded-lg bg-indigo-900 bg-opacity-50 hover:bg-opacity-70 transition-all">
-                        <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa8Ikesu6GIXpxF_SA0uNljvI8NlFdGHMybg&s" alt="Roblox" class="w-full h-full object-cover">
-                        </div>
-                        <div>
-                            <span class="text-indigo-200">Roblox</span>
-                            <p class="text-xs text-indigo-300">ID: 5422834736</p>
-                        </div>
-                    </a>
-                    
-                    <a href="https://www.instagram.com/coco_ak47/" target="_blank" class="flex items-center p-3 rounded-lg bg-indigo-900 bg-opacity-50 hover:bg-opacity-70 transition-all">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 flex items-center justify-center text-white mr-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <span class="text-indigo-200">Instagram</span>
-                            <p class="text-xs text-indigo-300">@coco_ak47</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Footer -->
-            <footer class="text-center text-indigo-300 py-6 mt-8">
-                <p>© 2025 CocoCola</p>
-                <p class="text-indigo-400 mt-2">CocoCola is Cool</p>
-            </footer>
-        </div>
-        
-        <!-- Animated Stars -->
-        <div id="stars" class="fixed top-0 left-0 w-full h-full pointer-events-none"></div>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
+ </head>
+ <body>
+  <div class="container mx-auto px-4 py-8 relative"><!-- Christmas Lights -->
+   <div class="christmas-lights" id="lights"></div><!-- Main Content -->
+   <div class="flex flex-col items-center justify-center min-h-screen">
+    <div class="christmas-card p-8 w-full max-w-md mb-8 floating">
+     <div class="flex justify-center mb-6"><img src="https://avatars.githubusercontent.com/u/216639816?v=4" alt="CocoCola" class="w-32 h-32 profile-img">
+     </div>
+     <h1 class="text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-yellow-300 to-green-400 mb-2">🎄 CocoCola 🎄</h1>
+     <p class="text-center text-indigo-200 mb-6">awa</p>
+     <div class="flex justify-center space-x-4"><a href="https://www.youtube.com/@cococola-cool" target="_blank" class="social-icon bg-red-600 text-white p-3 rounded-full">
+       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+       </svg></a> <a href="https://github.com/CocoColaCat" target="_blank" class="social-icon bg-gray-800 text-white p-3 rounded-full">
+       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+       </svg></a> <a href="https://www.instagram.com/coco_ak47/" target="_blank" class="social-icon bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white p-3 rounded-full">
+       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+       </svg></a>
+     </div>
     </div>
-
-    <script>
-        // Create animated stars
-        function createStars() {
-            const stars = document.getElementById('stars');
-            const count = 100;
-            
-            for (let i = 0; i < count; i++) {
-                const star = document.createElement('div');
-                const size = Math.random() * 2;
-                
-                star.style.position = 'absolute';
-                star.style.width = `${size}px`;
-                star.style.height = `${size}px`;
-                star.style.backgroundColor = 'white';
-                star.style.borderRadius = '50%';
-                star.style.top = `${Math.random() * 100}%`;
-                star.style.left = `${Math.random() * 100}%`;
-                star.style.opacity = Math.random();
-                star.style.animation = `twinkle ${Math.random() * 5 + 3}s infinite`;
-                
-                stars.appendChild(star);
+    <div class="christmas-card p-6 w-full max-w-md">
+     <h2 class="text-2xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-yellow-300 to-green-400 mb-4">🎁 我的連結 🎁</h2>
+     <div class="space-y-4"><a href="https://www.youtube.com/@cococola-cool" target="_blank" class="flex items-center p-3 rounded-lg bg-indigo-900 bg-opacity-50 hover:bg-opacity-70 transition-all">
+       <div class="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-white mr-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+        </svg>
+       </div>
+       <div><span class="text-indigo-200">YouTube</span>
+        <p class="text-xs text-indigo-300">@cococola-cool</p>
+       </div></a> <a href="https://github.com/CocoColaCat" target="_blank" class="flex items-center p-3 rounded-lg bg-indigo-900 bg-opacity-50 hover:bg-opacity-70 transition-all">
+       <div class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white mr-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+        </svg>
+       </div>
+       <div><span class="text-indigo-200">GitHub</span>
+        <p class="text-xs text-indigo-300">CocoColaCat</p>
+       </div></a> <a href="https://www.roblox.com/users/5422834736/profile" target="_blank" class="flex items-center p-3 rounded-lg bg-indigo-900 bg-opacity-50 hover:bg-opacity-70 transition-all">
+       <div class="w-10 h-10 rounded-full overflow-hidden mr-3"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa8Ikesu6GIXpxF_SA0uNljvI8NlFdGHMybg&amp;s" alt="Roblox" class="w-full h-full object-cover">
+       </div>
+       <div><span class="text-indigo-200">Roblox</span>
+        <p class="text-xs text-indigo-300">ID: 5422834736</p>
+       </div></a> <a href="https://www.instagram.com/coco_ak47/" target="_blank" class="flex items-center p-3 rounded-lg bg-indigo-900 bg-opacity-50 hover:bg-opacity-70 transition-all">
+       <div class="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 flex items-center justify-center text-white mr-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg>
+       </div>
+       <div><span class="text-indigo-200">Instagram</span>
+        <p class="text-xs text-indigo-300">@coco_ak47</p>
+       </div></a>
+     </div>
+    </div><!-- Footer -->
+    <footer class="text-center text-yellow-200 py-6 mt-8">
+     <p>© 2025 CocoCola</p>
+     <p class="text-green-300 mt-2">🎅 CocoCola is Cool 🎅</p>
+     <p class="text-red-300 mt-1">✨ Merry Christmas! ✨</p>
+    </footer>
+   </div><!-- Music Player -->
+   <div class="music-player" id="musicPlayer">
+    <div class="now-playing-badge">
+     <div class="now-playing-dot" id="playingDot"></div><span id="statusText">點擊播放</span>
+    </div>
+    <div class="player-header">
+     <div class="album-art" id="albumArt">
+      🎄
+     </div>
+     <div class="track-info">
+      <div class="track-title">
+       Christougenna
+      </div>
+      <div class="track-artist">
+       Urgel
+      </div>
+     </div>
+    </div>
+    <div class="player-controls"><button class="play-btn" id="playBtn" onclick="toggleMusic()">
+      <svg id="playIcon" viewbox="0 0 24 24"><path d="M8 5v14l11-7z" />
+      </svg></button>
+     <div class="progress-container">
+      <div class="progress-bar" id="progressBar" onclick="seekTo(event)">
+       <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="time-display"><span id="currentTime">0:00</span> <span id="duration">0:00</span>
+      </div>
+     </div>
+    </div>
+    <div class="volume-control"><span class="volume-icon" id="volumeIcon" onclick="toggleMute()">🔊</span> <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="80" oninput="setVolume(this.value)">
+    </div>
+   </div><!-- Background Music -->
+   <audio id="bgMusic" loop><source src="https://about.cococolacat.org/Christougenna.mp3" type="audio/mpeg">
+   </audio>
+  </div>
+  <script>
+        // Music control
+        const bgMusic = document.getElementById('bgMusic');
+        const playIcon = document.getElementById('playIcon');
+        const albumArt = document.getElementById('albumArt');
+        const progressFill = document.getElementById('progressFill');
+        const currentTimeEl = document.getElementById('currentTime');
+        const durationEl = document.getElementById('duration');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const volumeIcon = document.getElementById('volumeIcon');
+        const playingDot = document.getElementById('playingDot');
+        const statusText = document.getElementById('statusText');
+        let isPlaying = false;
+        
+        bgMusic.volume = 0.8;
+        
+        function toggleMusic() {
+            if (isPlaying) {
+                bgMusic.pause();
+                playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+                albumArt.classList.remove('playing');
+                playingDot.classList.remove('active');
+                statusText.textContent = '已暫停';
+            } else {
+                bgMusic.play();
+                playIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+                albumArt.classList.add('playing');
+                playingDot.classList.add('active');
+                statusText.textContent = '正在播放';
+            }
+            isPlaying = !isPlaying;
+        }
+        
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+        
+        bgMusic.addEventListener('timeupdate', () => {
+            const progress = (bgMusic.currentTime / bgMusic.duration) * 100;
+            progressFill.style.width = progress + '%';
+            currentTimeEl.textContent = formatTime(bgMusic.currentTime);
+        });
+        
+        bgMusic.addEventListener('loadedmetadata', () => {
+            durationEl.textContent = formatTime(bgMusic.duration);
+        });
+        
+        function seekTo(event) {
+            const progressBar = document.getElementById('progressBar');
+            const rect = progressBar.getBoundingClientRect();
+            const percent = (event.clientX - rect.left) / rect.width;
+            bgMusic.currentTime = percent * bgMusic.duration;
+        }
+        
+        function setVolume(value) {
+            bgMusic.volume = value / 100;
+            updateVolumeIcon(value);
+        }
+        
+        function updateVolumeIcon(value) {
+            if (value == 0) {
+                volumeIcon.textContent = '🔇';
+            } else if (value < 50) {
+                volumeIcon.textContent = '🔉';
+            } else {
+                volumeIcon.textContent = '🔊';
             }
         }
         
-        // Add CSS animation for twinkling stars
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes twinkle {
-                0% { opacity: 0.2; }
-                50% { opacity: 1; }
-                100% { opacity: 0.2; }
+        function toggleMute() {
+            if (bgMusic.volume > 0) {
+                bgMusic.dataset.prevVolume = bgMusic.volume;
+                bgMusic.volume = 0;
+                volumeSlider.value = 0;
+                volumeIcon.textContent = '🔇';
+            } else {
+                const prevVolume = bgMusic.dataset.prevVolume || 0.8;
+                bgMusic.volume = prevVolume;
+                volumeSlider.value = prevVolume * 100;
+                updateVolumeIcon(prevVolume * 100);
             }
-        `;
-        document.head.appendChild(style);
+        }
         
-        // Initialize stars
-        createStars();
+        // Create snowflakes
+        function createSnowflakes() {
+            const snowflakes = ['❄', '❅', '❆', '✻', '✼'];
+            
+            setInterval(() => {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.textContent = snowflakes[Math.floor(Math.random() * snowflakes.length)];
+                snowflake.style.left = Math.random() * 100 + '%';
+                snowflake.style.fontSize = (Math.random() * 1 + 0.5) + 'rem';
+                snowflake.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                snowflake.style.opacity = Math.random() * 0.6 + 0.4;
+                
+                document.body.appendChild(snowflake);
+                
+                setTimeout(() => {
+                    snowflake.remove();
+                }, 7000);
+            }, 200);
+        }
+        
+        // Create Christmas lights
+        function createLights() {
+            const lights = document.getElementById('lights');
+            const colors = ['#ff0000', '#00ff00', '#ffd700', '#0000ff', '#ff69b4', '#00ffff'];
+            
+            for (let i = 0; i < 20; i++) {
+                const bulb = document.createElement('div');
+                bulb.className = 'light-bulb';
+                bulb.style.backgroundColor = colors[i % colors.length];
+                bulb.style.boxShadow = `0 0 10px ${colors[i % colors.length]}, 0 0 20px ${colors[i % colors.length]}`;
+                bulb.style.animationDelay = (i * 0.1) + 's';
+                lights.appendChild(bulb);
+            }
+        }
+        
+        // Initialize
+        createSnowflakes();
+        createLights();
+        
+        // Auto play music when page loads
+        function autoPlayMusic() {
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                playIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+                albumArt.classList.add('playing');
+                playingDot.classList.add('active');
+                statusText.textContent = '正在播放';
+            }).catch(() => {
+                // Autoplay blocked, wait for user interaction
+                statusText.textContent = '點擊播放';
+                document.body.addEventListener('click', function playOnClick() {
+                    if (!isPlaying) {
+                        toggleMusic();
+                    }
+                    document.body.removeEventListener('click', playOnClick);
+                }, { once: true });
+            });
+        }
+        
+        autoPlayMusic();
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'954c290300eda3a6',t:'MTc1MDc2NzQyNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b16ebe77141a9c2',t:'MTc2NjMxNTMwNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
