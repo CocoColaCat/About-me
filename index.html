@@ -10,19 +10,19 @@
         body {
             box-sizing: border-box;
             font-family: 'Nunito', sans-serif;
-            background: linear-gradient(135deg, #1a472a 0%, #2d5a3f 30%, #0f2417 70%, #1a472a 100%);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
             min-height: 100vh;
             color: white;
             overflow-x: hidden;
         }
         
-        .christmas-card {
-            backdrop-filter: blur(8px) saturate(180%);
-            -webkit-backdrop-filter: blur(8px) saturate(180%);
-            background-color: rgba(139, 0, 0, 0.3);
+        .glass-card {
+            backdrop-filter: blur(10px) saturate(180%);
+            -webkit-backdrop-filter: blur(10px) saturate(180%);
+            background-color: rgba(138, 43, 226, 0.15);
             border-radius: 12px;
-            border: 2px solid rgba(255, 215, 0, 0.4);
-            box-shadow: 0 0 30px rgba(255, 0, 0, 0.3), 0 0 60px rgba(0, 128, 0, 0.2);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(138, 43, 226, 0.2);
         }
         
         .social-icon {
@@ -46,65 +46,68 @@
         
         .profile-img {
             border-radius: 50%;
-            border: 4px solid rgba(255, 215, 0, 0.7);
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5), 0 0 40px rgba(0, 128, 0, 0.3);
+            border: 4px solid rgba(138, 43, 226, 0.6);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
         }
         
-        .snowflake {
+        /* Stars */
+        .star {
             position: fixed;
-            color: white;
-            font-size: 1rem;
-            top: -20px;
-            animation: fall linear infinite;
+            background: white;
+            border-radius: 50%;
             pointer-events: none;
-            z-index: 1000;
+            z-index: 0;
         }
         
-        @keyframes fall {
-            0% {
-                transform: translateY(-10px) rotate(0deg);
+        @keyframes twinkle {
+            0%, 100% { 
+                opacity: 0.3;
+                transform: scale(1);
+                box-shadow: 0 0 3px #fff;
+            }
+            50% { 
+                opacity: 1;
+                transform: scale(1.3);
+                box-shadow: 0 0 10px #fff, 0 0 20px #a855f7;
+            }
+        }
+        
+        @keyframes twinkle2 {
+            0%, 100% { 
+                opacity: 0.6;
+                transform: scale(1.1);
+            }
+            50% { 
+                opacity: 0.2;
+                transform: scale(0.9);
+            }
+        }
+        
+        @keyframes twinkle3 {
+            0%, 100% { 
+                opacity: 0.4;
+            }
+            25% {
                 opacity: 1;
             }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0.3;
+            75% {
+                opacity: 0.2;
             }
         }
         
-        .christmas-lights {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 30px;
-            display: flex;
-            justify-content: space-around;
-            z-index: 100;
-        }
-        
-        .light-bulb {
-            width: 12px;
-            height: 18px;
-            border-radius: 50%;
-            animation: glow 1s ease-in-out infinite alternate;
-        }
-        
-        @keyframes glow {
-            0% { opacity: 0.4; filter: brightness(0.8); }
-            100% { opacity: 1; filter: brightness(1.5); }
-        }
+
         
         .music-player {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: linear-gradient(135deg, rgba(139, 0, 0, 0.9), rgba(0, 100, 0, 0.9));
-            border: 2px solid gold;
+            background: linear-gradient(135deg, rgba(88, 28, 135, 0.95), rgba(59, 7, 100, 0.95));
+            border: 2px solid rgba(168, 85, 247, 0.5);
             border-radius: 16px;
             padding: 16px;
             z-index: 1001;
             backdrop-filter: blur(10px);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3), 0 10px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.3), 0 10px 40px rgba(0, 0, 0, 0.4);
             min-width: 280px;
         }
         
@@ -118,7 +121,7 @@
         .album-art {
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, #c41e3a, #228b22);
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -142,7 +145,7 @@
         }
         
         .track-title {
-            color: #ffd700;
+            color: #e9d5ff;
             font-weight: 700;
             font-size: 14px;
             white-space: nowrap;
@@ -151,7 +154,7 @@
         }
         
         .track-artist {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.7);
             font-size: 12px;
         }
         
@@ -164,7 +167,7 @@
         .play-btn {
             width: 44px;
             height: 44px;
-            background: linear-gradient(135deg, #ffd700, #ffaa00);
+            background: linear-gradient(135deg, #a855f7, #7c3aed);
             border: none;
             border-radius: 50%;
             display: flex;
@@ -172,18 +175,18 @@
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
         }
         
         .play-btn:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6);
         }
         
         .play-btn svg {
             width: 20px;
             height: 20px;
-            fill: #1a472a;
+            fill: white;
         }
         
         .progress-container {
@@ -204,7 +207,7 @@
         
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #ffd700, #ff6b6b);
+            background: linear-gradient(90deg, #a855f7, #ec4899);
             border-radius: 3px;
             width: 0%;
             transition: width 0.1s linear;
@@ -244,7 +247,7 @@
             appearance: none;
             width: 12px;
             height: 12px;
-            background: #ffd700;
+            background: #a855f7;
             border-radius: 50%;
             cursor: pointer;
         }
@@ -253,11 +256,11 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(255, 215, 0, 0.2);
+            background: rgba(168, 85, 247, 0.2);
             padding: 4px 10px;
             border-radius: 12px;
             font-size: 10px;
-            color: #ffd700;
+            color: #e9d5ff;
             margin-bottom: 10px;
         }
         
@@ -283,13 +286,12 @@
   <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
  </head>
  <body>
-  <div class="container mx-auto px-4 py-8 relative"><!-- Christmas Lights -->
-   <div class="christmas-lights" id="lights"></div><!-- Main Content -->
+  <div class="container mx-auto px-4 py-8 relative" style="z-index: 1;"><!-- Main Content -->
    <div class="flex flex-col items-center justify-center min-h-screen">
-    <div class="christmas-card p-8 w-full max-w-md mb-8 floating">
+    <div class="glass-card p-8 w-full max-w-md mb-8 floating">
      <div class="flex justify-center mb-6"><img src="https://avatars.githubusercontent.com/u/216639816?v=4" alt="CocoCola" class="w-32 h-32 profile-img">
      </div>
-     <h1 class="text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-yellow-300 to-green-400 mb-2">🎄 CocoCola 🎄</h1>
+     <h1 class="text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 mb-2">CocoCola</h1>
      <p class="text-center text-indigo-200 mb-6">awa</p>
      <div class="flex justify-center space-x-4"><a href="https://www.youtube.com/@cococola-cool" target="_blank" class="social-icon bg-red-600 text-white p-3 rounded-full">
        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
@@ -300,8 +302,8 @@
        </svg></a>
      </div>
     </div>
-    <div class="christmas-card p-6 w-full max-w-md">
-     <h2 class="text-2xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-yellow-300 to-green-400 mb-4">🎁 我的連結 🎁</h2>
+    <div class="glass-card p-6 w-full max-w-md">
+     <h2 class="text-2xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-4">我的連結</h2>
      <div class="space-y-4"><a href="https://www.youtube.com/@cococola-cool" target="_blank" class="flex items-center p-3 rounded-lg bg-indigo-900 bg-opacity-50 hover:bg-opacity-70 transition-all">
        <div class="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-white mr-3">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
@@ -331,26 +333,25 @@
        </div></a>
      </div>
     </div><!-- Footer -->
-    <footer class="text-center text-yellow-200 py-6 mt-8">
+    <footer class="text-center text-indigo-300 py-6 mt-8">
      <p>© 2025 CocoCola</p>
-     <p class="text-green-300 mt-2">🎅 CocoCola is Cool 🎅</p>
-     <p class="text-red-300 mt-1">✨ Merry Christmas! ✨</p>
+     <p class="text-purple-300 mt-2">✨ CocoCola is Cool ✨</p>
     </footer>
    </div><!-- Music Player -->
    <div class="music-player" id="musicPlayer">
     <div class="now-playing-badge">
-     <div class="now-playing-dot" id="playingDot"></div><span id="statusText">點擊播放</span>
+     <div class="now-playing-dot" id="playingDot"></div><span id="statusText">點擊��放</span>
     </div>
     <div class="player-header">
      <div class="album-art" id="albumArt">
-      🎄
+      🎵
      </div>
      <div class="track-info">
       <div class="track-title">
-       Christougenna
+       Dreaming On
       </div>
       <div class="track-artist">
-       Urgel
+       NEFFEX
       </div>
      </div>
     </div>
@@ -368,7 +369,7 @@
     <div class="volume-control"><span class="volume-icon" id="volumeIcon" onclick="toggleMute()">🔊</span> <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="80" oninput="setVolume(this.value)">
     </div>
    </div><!-- Background Music -->
-   <audio id="bgMusic" loop><source src="https://about.cococolacat.org/Christougenna.mp3" type="audio/mpeg">
+   <audio id="bgMusic" loop><source src="https://about.cococolacat.org/Dreaming On-NEFFEX.mp3" type="audio/mpeg">
    </audio>
   </div>
   <script>
@@ -456,45 +457,33 @@
             }
         }
         
-        // Create snowflakes
-        function createSnowflakes() {
-            const snowflakes = ['❄', '❅', '❆', '✻', '✼'];
+        // Create stars
+        function createStars() {
+            const starCount = 100;
+            const animations = ['twinkle', 'twinkle2', 'twinkle3'];
             
-            setInterval(() => {
-                const snowflake = document.createElement('div');
-                snowflake.className = 'snowflake';
-                snowflake.textContent = snowflakes[Math.floor(Math.random() * snowflakes.length)];
-                snowflake.style.left = Math.random() * 100 + '%';
-                snowflake.style.fontSize = (Math.random() * 1 + 0.5) + 'rem';
-                snowflake.style.animationDuration = (Math.random() * 3 + 4) + 's';
-                snowflake.style.opacity = Math.random() * 0.6 + 0.4;
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
                 
-                document.body.appendChild(snowflake);
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
                 
-                setTimeout(() => {
-                    snowflake.remove();
-                }, 7000);
-            }, 200);
-        }
-        
-        // Create Christmas lights
-        function createLights() {
-            const lights = document.getElementById('lights');
-            const colors = ['#ff0000', '#00ff00', '#ffd700', '#0000ff', '#ff69b4', '#00ffff'];
-            
-            for (let i = 0; i < 20; i++) {
-                const bulb = document.createElement('div');
-                bulb.className = 'light-bulb';
-                bulb.style.backgroundColor = colors[i % colors.length];
-                bulb.style.boxShadow = `0 0 10px ${colors[i % colors.length]}, 0 0 20px ${colors[i % colors.length]}`;
-                bulb.style.animationDelay = (i * 0.1) + 's';
-                lights.appendChild(bulb);
+                const animation = animations[Math.floor(Math.random() * animations.length)];
+                const duration = Math.random() * 3 + 2;
+                const delay = Math.random() * 5;
+                
+                star.style.animation = `${animation} ${duration}s ${delay}s infinite`;
+                
+                document.body.appendChild(star);
             }
         }
         
         // Initialize
-        createSnowflakes();
-        createLights();
+        createStars();
         
         // Auto play music when page loads
         function autoPlayMusic() {
@@ -505,7 +494,6 @@
                 playingDot.classList.add('active');
                 statusText.textContent = '正在播放';
             }).catch(() => {
-                // Autoplay blocked, wait for user interaction
                 statusText.textContent = '點擊播放';
                 document.body.addEventListener('click', function playOnClick() {
                     if (!isPlaying) {
@@ -518,5 +506,5 @@
         
         autoPlayMusic();
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b16ebe77141a9c2',t:'MTc2NjMxNTMwNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b51704f2654b016',t:'MTc2NjkyODkwMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
