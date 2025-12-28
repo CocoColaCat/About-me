@@ -366,7 +366,7 @@
       </div>
      </div>
     </div>
-    <div class="volume-control"><span class="volume-icon" id="volumeIcon" onclick="toggleMute()">🔊</span> <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="80" oninput="setVolume(this.value)">
+    <div class="volume-control"><span class="volume-icon" id="volumeIcon" onclick="toggleMute()">🔉</span> <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="15" oninput="setVolume(this.value)">
     </div>
    </div><!-- Background Music -->
    <audio id="bgMusic" loop><source src="https://about.cococolacat.org/Dreaming On-NEFFEX.mp3" type="audio/mpeg">
@@ -386,7 +386,7 @@
         const statusText = document.getElementById('statusText');
         let isPlaying = false;
         
-        bgMusic.volume = 0.8;
+        bgMusic.volume = 0.15;
         
         function toggleMusic() {
             if (isPlaying) {
@@ -450,7 +450,7 @@
                 volumeSlider.value = 0;
                 volumeIcon.textContent = '🔇';
             } else {
-                const prevVolume = bgMusic.dataset.prevVolume || 0.8;
+                const prevVolume = bgMusic.dataset.prevVolume || 0.15;
                 bgMusic.volume = prevVolume;
                 volumeSlider.value = prevVolume * 100;
                 updateVolumeIcon(prevVolume * 100);
@@ -506,5 +506,5 @@
         
         autoPlayMusic();
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b51704f2654b016',t:'MTc2NjkyODkwMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b518480052cb016',t:'MTc2NjkyOTczMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
